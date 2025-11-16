@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { content } from "../Content";
 import { HiMenuAlt2 } from "react-icons/hi";
 import { createElement } from "react";
@@ -7,6 +7,31 @@ const Navbar = () => {
   const { nav } = content;
   const [showMenu, setShowMenu] = useState(false);
   const [active, setActive] = useState(0);
+
+  // Update active section on scroll and close menu on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPos = window.scrollY + window.innerHeight / 2;
+
+      // Update active section
+      nav.forEach((item, i) => {
+        const section = document.querySelector(item.link);
+        if (section) {
+          const top = section.offsetTop;
+          const bottom = top + section.offsetHeight;
+          if (scrollPos >= top && scrollPos < bottom) {
+            setActive(i);
+          }
+        }
+      });
+
+      // Close menu when scrolling
+      if (showMenu) setShowMenu(false);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [nav, showMenu]);
 
   const handleClick = (i) => {
     setActive(i);
@@ -39,18 +64,15 @@ const Navbar = () => {
               onClick={() => handleClick(i)}
               className={`flex items-center gap-2 p-2 rounded-md text-lg transition-colors duration-200 ${
                 isActive
-                  ? "bg-[#C6A87D] text-white" // Active link: beige accent + white text
-                  : "bg-transparent text-[#5A5A5A] hover:bg-[#EADFC7]" // Non-active: light beige hover
+                  ? "bg-[#C6A87D] text-white"
+                  : "bg-transparent text-[#5A5A5A] hover:bg-[#EADFC7]"
               }`}
             >
-              {/* Icon */}
               {createElement(item.icon, {
                 className: isActive ? "text-white" : "text-[#5A5A5A]",
               })}
-
-              {/* Text */}
               <span className={`capitalize ${isActive ? "text-white" : "text-[#5A5A5A]"}`}>
-                {item.link.replace("#", "")}
+                {item.link.replace("#", "") === "/blog" ? "Blog" : item.link.replace("#", "")}
               </span>
             </a>
           );
