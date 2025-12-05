@@ -16,6 +16,7 @@ import About_person from "./assets/images/About/cat.png";
 import blogImg1 from "./assets/images/Blog/Image1.JPG";
 import blogImg2 from "./assets/images/Blog/Image2.jpeg";
 import blogImg3 from "./assets/images/Blog/Image3.JPG";
+import VdoThumb from "./assets/images/VideoThumb/coffee.png";
 
 // import icons from react-icons
 import { GrMail } from "react-icons/gr";
@@ -174,8 +175,14 @@ export const content = {
         reason:
           "I took this photo because the store has both instruments to create music and vinyl records to experience it. The guitars are surrounded by lights, as if they bring light and inspiration into life, while the vinyl records include music from different countries, showing that no matter what language someone speaks or where they come from, music can still be felt and understood. It reflects my passion for music—not just in creating it, but in enjoying it. The instruments, records, and the store’s atmosphere make me feel connected to the joy, creativity, and endless possibilities that music brings into my life."
       },
+      {
+        id: "video-ad",
+        type: "video",
+        image: VdoThumb, // you can change this later to video thumbnail
+      },
     ],
   },
+  
 
   Projects: {
     title: "Projects",

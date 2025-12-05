@@ -10,6 +10,7 @@ import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Blog from "./components/Blog";
 import BlogDetail from "./components/BlogDetail";
+import VideoDetail from "./components/VideoDetail";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import { content } from "./Content";
@@ -53,6 +54,9 @@ const App = () => {
 
         {/* Blog detail page */}
         <Route path="/blog/:id" element={<BlogDetail />} />
+
+        {/* Video detail page */}
+        <Route path="/video/:id" element={<VideoDetail />} />
       </Routes>
 
       <footer className="p-3 text-center bg-[#F5F1EB] border-t border-[#E0D8CC]">
