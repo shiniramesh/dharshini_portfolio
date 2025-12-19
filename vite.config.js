@@ -4,5 +4,5 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: "/dharshini_portfolio", // ← ensures assets load correctly on Netlify
+  base: "/", // ← ensures assets load correctly on Netlify
 });
