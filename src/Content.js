@@ -6,10 +6,10 @@ import unity from "./assets/images/Skills/Unity.png";
 import blender from "./assets/images/Skills/Blender.png";
 import reactjs from "./assets/images/Skills/react.png";
 
-import project1 from "./assets/images/projects/img1.png";
-import project2 from "./assets/images/projects/img2.jpeg";
-import project3 from "./assets/images/projects/img3.jpeg";
-import person_project from "./assets/images/projects/sunflower.png";
+import project1 from "./assets/images/Projects/img1.png";
+import project2 from "./assets/images/Projects/img2.jpeg";
+import project3 from "./assets/images/Projects/img3.jpeg";
+import person_project from "./assets/images/Projects/sunflower.png";
 
 import About_person from "./assets/images/About/cat.png";
 
