@@ -1,12 +1,14 @@
 {
   "name": "dharshini_portfolio",
-  "private": true,
+  "homepage": "https://shiniramesh.github.io/dharshini_portfolio/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite --host",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "vite build", 
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@emailjs/browser": "^3.9.1",

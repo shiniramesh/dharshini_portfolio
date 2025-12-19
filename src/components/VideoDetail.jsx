@@ -56,7 +56,7 @@ const VideoDetail = () => {
         {/* Image after Reflection */}
         <div className="relative mb-10">
           <img
-            src={reflectionImg } // replace with your image path
+            src={reflectionImg } 
             alt="Reflection on Contribution"
             className="rounded-xl shadow-lg mx-auto w-3/4 sm:w-2/3 md:w-1/2 h-auto"
           />
@@ -77,7 +77,7 @@ const VideoDetail = () => {
         {/* Image after Side Role */}
         <div className="relative mb-10">
           <img
-            src={sideRoleImg} // replace with your image path
+            src={sideRoleImg} 
             alt="Side Role"
             className="rounded-xl shadow-lg mx-auto w-3/4 sm:w-2/3 md:w-1/2 h-auto"
           />
@@ -92,7 +92,7 @@ const VideoDetail = () => {
         {/* Image after Teamwork */}
         <div className="relative mb-12">
           <img
-            src={teamworkImg} // replace with your image path
+            src={teamworkImg} 
             alt="Teamwork & Learning"
             className="rounded-xl shadow-lg mx-auto w-3/4 sm:w-2/3 md:w-1/2 h-auto"
           />
