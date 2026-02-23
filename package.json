@@ -22,7 +22,7 @@
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.9.6",
     "react-router-hash-link": "^2.4.3",
-    "swiper": "^8.4.4"
+    "swiper": "^12.1.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.24",

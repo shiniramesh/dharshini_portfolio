@@ -209,6 +209,16 @@ export const content = {
       },
     ],
   },
+  Reports: { 
+    title: "Report", 
+    report_content: [ 
+      { title: "Dharshini_Ramesh_Babu_Resume", 
+        image: project2, 
+        link: "/resume.pdf", 
+      }, // Add more reports here if needed 
+    ], 
+  }, 
+
 
   About: {
     title: "About Me",
