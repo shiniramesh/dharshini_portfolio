@@ -121,7 +121,7 @@ const Projects = () => {
 
             {/* REPORTS SWIPER */}
             <div data-aos="fade-left" data-aos-delay="400">
-              <p className="text-[10px] font-bold opacity-40 uppercase mb-2 tracking-widest">Reports</p>
+              <p className="text-[10px] font-bold opacity-40 uppercase mb-2 tracking-widest">Report</p>
               <Swiper pagination={{ clickable: true }} spaceBetween={10} modules={[Pagination]} className="pb-8 custom-swiper">
                 {Reports.report_content.map((item, i) => (
                   <SwiperSlide key={i} className="pb-2">

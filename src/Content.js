@@ -9,6 +9,7 @@ import reactjs from "./assets/images/Skills/react.png";
 import project1 from "./assets/images/Projects/img1.png";
 import project2 from "./assets/images/Projects/img2.jpeg";
 import project3 from "./assets/images/Projects/img3.jpeg";
+import project4 from "./assets/images/Projects/img4.png";
 import person_project from "./assets/images/Projects/sunflower.png";
 
 import About_person from "./assets/images/About/cat.png";
@@ -212,9 +213,9 @@ export const content = {
   Reports: { 
     title: "Report", 
     report_content: [ 
-      { title: "Dharshini_Ramesh_Babu_Resume", 
-        image: project2, 
-        link: "/resume.pdf", 
+      { title: " Interactive Art Storyboarding - “Is Recycling Enough?", 
+        image: project4, 
+        link: "/report.pdf", 
       }, // Add more reports here if needed 
     ], 
   }, 
