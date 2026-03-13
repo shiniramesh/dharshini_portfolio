@@ -10,6 +10,7 @@ import project1 from "./assets/images/Projects/img1.png";
 import project2 from "./assets/images/Projects/img2.jpeg";
 import project3 from "./assets/images/Projects/img3.jpeg";
 import project4 from "./assets/images/Projects/img4.png";
+import project5 from "./assets/images/Projects/img5.png";
 import person_project from "./assets/images/Projects/sunflower.png";
 
 import About_person from "./assets/images/About/cat.png";
@@ -216,7 +217,12 @@ export const content = {
       { title: " Interactive Art Storyboarding - “Is Recycling Enough?", 
         image: project4, 
         link: "/report.pdf", 
-      }, // Add more reports here if needed 
+      }, 
+      {
+        title: " Interactive/Algorithmic Soundscape Performance", 
+        image: project5, 
+        link: "/soundscape.pdf",
+      }// Add more reports here if needed 
     ], 
   }, 
 
