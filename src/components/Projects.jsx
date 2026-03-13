@@ -34,12 +34,13 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="h-screen bg-[#F5F1EB] flex flex-col items-center overflow-hidden relative">
-      {/* Outer wrapper with padding to contain AOS transitions within the section */}
-      <div className="md:container px-5 w-full flex flex-col h-full max-w-6xl pt-12 pb-4 overflow-hidden">
+    /* 1. min-h-screen instead of h-screen ensures scrolling works on small devices */
+    <section id="projects" className="min-h-screen bg-[#F5F1EB] flex flex-col items-center py-12 relative overflow-x-hidden">
+      
+      <div className="md:container px-5 w-full flex flex-col max-w-6xl mx-auto">
         
         {/* TITLES */}
-        <div className="mb-4 text-center md:text-left">
+        <div className="mb-8 text-center md:text-left">
           <h2 className="title text-3xl md:text-4xl font-semibold text-[#333333]" data-aos="fade-down">
             {Projects.title} & {Reports.title}
           </h2>
@@ -49,21 +50,23 @@ const Projects = () => {
         </div>
 
         {/* CONTENT AREA */}
-        <div className="flex flex-row items-center justify-center gap-6 xl:gap-12 flex-1 overflow-hidden">
+        <div className="flex flex-col lg:flex-row items-center lg:items-start justify-center gap-6 xl:gap-12">
           
-          {/* LEFT DECORATION */}
+          {/* LEFT DECORATION (Hidden on mobile) */}
           <div className="hidden lg:flex flex-none w-52 xl:w-72" data-aos="fade-right" data-aos-delay="200">
             <img src={Projects.image} alt="Decoration" className="w-full h-auto object-contain" />
           </div>
 
           {/* CARDS WRAPPER */}
-          <div className="flex-1 flex flex-col items-center overflow-y-auto scrollbar-hide">
+          <div className="w-full flex-1 flex flex-col items-center gap-4">
             
-            {/* TOP ROW: Projects and Reports */}
-            <div className="flex flex-row justify-center gap-6 w-full mb-2">
+            {/* TOP ROW: Stacks on mobile (flex-col), side-by-side on laptop (md:flex-row) */}
+            <div className="flex flex-col md:flex-row justify-center gap-6 w-full mb-2 items-center md:items-start">
+              
+              {/* Projects Swiper */}
               <div className="w-full max-w-[320px]" data-aos="fade-up" data-aos-delay="300">
-                <p className="text-[10px] font-bold opacity-40 uppercase mb-1 tracking-[0.2em] text-center">Projects</p>
-                <Swiper pagination={{ clickable: true }} spaceBetween={15} modules={[Pagination]} className="pb-8 custom-swiper">
+                <p className="text-[10px] font-bold opacity-40 uppercase mb-2 tracking-[0.2em] text-center">Projects</p>
+                <Swiper pagination={{ clickable: true }} spaceBetween={15} modules={[Pagination]} className="pb-10 custom-swiper">
                   {Projects.project_content.map((item, i) => (
                     <SwiperSlide key={i}>
                       <div className="bg-white rounded-[2rem] p-5 shadow-sm border border-[#E0D8CC]/50 flex flex-col hover:shadow-md transition-all min-h-[250px]">
@@ -80,9 +83,10 @@ const Projects = () => {
                 </Swiper>
               </div>
 
+              {/* Reports Swiper */}
               <div className="w-full max-w-[320px]" data-aos="fade-up" data-aos-delay="400">
-                <p className="text-[10px] font-bold opacity-40 uppercase mb-1 tracking-[0.2em] text-center">Reports</p>
-                <Swiper pagination={{ clickable: true }} spaceBetween={15} modules={[Pagination]} className="pb-8 custom-swiper">
+                <p className="text-[10px] font-bold opacity-40 uppercase mb-2 tracking-[0.2em] text-center">Reports</p>
+                <Swiper pagination={{ clickable: true }} spaceBetween={15} modules={[Pagination]} className="pb-10 custom-swiper">
                   {Reports.report_content.map((item, i) => (
                     <SwiperSlide key={i}>
                       <div className="bg-white rounded-[2rem] p-5 shadow-sm border border-[#E0D8CC]/50 flex flex-col hover:shadow-md transition-all min-h-[250px]">
@@ -100,11 +104,11 @@ const Projects = () => {
               </div>
             </div>
 
-            {/* BOTTOM ROW: Lab Work (Images Only) */}
+            {/* BOTTOM ROW: Lab Work (Always Centered) */}
             {LabWork && (
               <div className="w-full max-w-[320px]" data-aos="fade-up" data-aos-delay="500">
-                <p className="text-[10px] font-bold opacity-40 uppercase mb-1 tracking-[0.2em] text-center">Lab Work</p>
-                <Swiper pagination={{ clickable: true }} spaceBetween={15} modules={[Pagination]} className="pb-8 custom-swiper">
+                <p className="text-[10px] font-bold opacity-40 uppercase mb-2 tracking-[0.2em] text-center">Lab Work</p>
+                <Swiper pagination={{ clickable: true }} spaceBetween={15} modules={[Pagination]} className="pb-10 custom-swiper">
                   {LabWork.lab_content.map((item, i) => {
                     const thumb = item.image || (typeof item.media?.[0] === 'string' ? item.media[0] : item.media?.[0]?.src);
                     return (
@@ -131,45 +135,19 @@ const Projects = () => {
         </div>
       </div>
 
-      {/* MODAL POPUP */}
+      {/* MODAL POPUP (Responsive sizing) */}
       {selectedItem && (
-        <div className={`fixed inset-0 bg-black/50 backdrop-blur-sm flex justify-center items-center z-[100] transition-opacity ${closing ? "opacity-0" : "opacity-100"}`}>
-          <div ref={modalRef} className={`bg-[#F5F1EB] p-8 rounded-[2.5rem] flex flex-col shadow-2xl transform transition-transform ${closing ? "scale-95" : "scale-100"} ${showPDF || showGallery ? "w-[90%] h-[85vh]" : "max-w-md w-[90%]"}`}>
-            
-            <div className="flex justify-between items-start mb-6">
-              <h3 className="text-2xl font-bold text-[#333333] leading-tight pr-4">{selectedItem.title}</h3>
-              <button onClick={closeModal} className="text-2xl opacity-40 hover:opacity-100 transition-opacity">✕</button>
+        <div className={`fixed inset-0 bg-black/50 backdrop-blur-sm flex justify-center items-center z-[100] transition-opacity p-4 ${closing ? "opacity-0" : "opacity-100"}`}>
+          <div ref={modalRef} className={`bg-[#F5F1EB] p-6 md:p-8 rounded-[2rem] flex flex-col shadow-2xl transform transition-transform ${closing ? "scale-95" : "scale-100"} ${showPDF || showGallery ? "w-full lg:w-[90%] h-[85vh]" : "max-w-md w-full"}`}>
+            <div className="flex justify-between items-start mb-4">
+              <h3 className="text-xl md:text-2xl font-bold text-[#333333] leading-tight pr-4">{selectedItem.title}</h3>
+              <button onClick={closeModal} className="text-2xl opacity-40 hover:opacity-100 p-2">✕</button>
             </div>
-
             <div className="flex-1 overflow-y-auto">
-              {showPDF ? (
-                <iframe src={selectedItem.link} title="PDF" className="w-full h-full rounded-xl border-none bg-white" />
-              ) : showGallery ? (
-                <div className="w-full h-full bg-white rounded-xl border border-[#E0D8CC] p-2">
-                  <Swiper navigation={true} pagination={{ type: "fraction" }} modules={[Navigation, Pagination]} className="w-full h-full">
-                    {(selectedItem.media || selectedItem.images || [])
-                      .map((med, index) => {
-                        const src = med.src || med;
-                        return (
-                          <SwiperSlide key={index} className="flex justify-center items-center h-full">
-                            <img src={src} alt={`Slide ${index}`} className="max-w-full max-h-full object-contain rounded-lg" />
-                          </SwiperSlide>
-                        );
-                    })}
-                  </Swiper>
-                </div>
-              ) : (
-                <div className="text-[15px] text-[#555555] leading-relaxed pr-2">{selectedItem.description}</div>
-              )}
+              {showPDF ? <iframe src={selectedItem.link} title="PDF" className="w-full h-full rounded-xl border-none bg-white" /> : 
+               showGallery ? <div className="h-full bg-white p-2 rounded-xl"><Swiper navigation pagination={{ type: "fraction" }} modules={[Navigation, Pagination]} className="h-full">{(selectedItem.media || selectedItem.images || []).map((med, index) => <SwiperSlide key={index} className="flex justify-center items-center"><img src={med.src || med} className="max-w-full max-h-full object-contain rounded-lg"/></SwiperSlide>)}</Swiper></div> :
+               <div className="text-[15px] text-[#555555] leading-relaxed">{selectedItem.description}</div>}
             </div>
-
-            {!showPDF && !showGallery && (
-              <div className="flex justify-end mt-8">
-                <button onClick={closeModal} className="bg-[#C6A87D] text-white px-10 py-2.5 rounded-xl font-medium hover:bg-[#b3966a] transition-all shadow-sm">
-                  Close
-                </button>
-              </div>
-            )}
           </div>
         </div>
       )}
