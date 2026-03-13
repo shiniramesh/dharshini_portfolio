@@ -20,6 +20,10 @@ import blogImg2 from "./assets/images/Blog/Image2.jpeg";
 import blogImg3 from "./assets/images/Blog/Image3.JPG";
 import VdoThumb from "./assets/images/VideoThumb/coffee.png";
 
+// Ensure these paths match your folder structure exactly!
+import labwork1 from "./assets/images/Projects/stand1.jpeg"; 
+import labwork2 from "./assets/images/Projects/stand2.jpeg";
+
 // import icons from react-icons
 import { GrMail } from "react-icons/gr";
 import { BsInstagram } from "react-icons/bs";
@@ -27,6 +31,7 @@ import { TbSmartHome } from "react-icons/tb";
 import { BiUser } from "react-icons/bi";
 import { RiServiceLine, RiProjectorLine, RiCameraLine, RiVideoLine } from "react-icons/ri";
 import { MdOutlinePermContactCalendar, MdCall } from "react-icons/md";
+
 
 export const content = {
   nav: [
@@ -225,6 +230,16 @@ export const content = {
       }// Add more reports here if needed 
     ], 
   }, 
+  LabWork: {
+    title: "Lab Work",
+    lab_content: [
+      {
+        title: "Phone Stand Redesign",
+        // Notice this is an ARRAY of images (plural "images")
+        images: [labwork1, labwork2], 
+      }
+    ],
+  },
 
 
   About: {
