@@ -126,20 +126,33 @@ const Projects = () => {
       {/* MODAL POPUP */}
       {selectedItem && (
         <div className={`fixed inset-0 bg-black/50 backdrop-blur-sm flex justify-center items-center z-[100] transition-opacity p-4 ${closing ? "opacity-0" : "opacity-100"}`}>
-          <div ref={modalRef} className={`bg-[#F5F1EB] p-6 md:p-8 rounded-[2rem] flex flex-col shadow-2xl transform transition-transform ${closing ? "scale-95" : "scale-100"} ${showPDF || showGallery ? "w-full lg:w-[90%] h-[85vh]" : "max-w-md w-full"}`}>
+          <div ref={modalRef} className={`bg-[#F5F1EB] p-6 md:p-8 rounded-[2rem] flex flex-col shadow-2xl transform transition-transform ${closing ? "scale-95" : "scale-100"} ${showPDF || showGallery ? "w-full lg:w-[90%] h-auto lg:h-[85vh]" : "max-w-md w-full"}`}>
             
             <div className="flex justify-between items-start mb-4">
               <h3 className="text-xl md:text-2xl font-bold text-[#333333] leading-tight pr-4">{selectedItem.title}</h3>
               <button onClick={closeModal} className="text-2xl opacity-40 hover:opacity-100 p-2">✕</button>
             </div>
 
-            <div className="flex-1 overflow-y-auto">
+            <div className="flex-1 overflow-y-auto min-h-[200px]">
               {showPDF ? (
-                <iframe 
-                  src={`${selectedItem.link}#view=FitH`} 
-                  title="PDF" 
-                  className="w-full h-full rounded-xl border-none bg-white" 
-                />
+                <>
+                  {/* LAPTOP VIEW: Show iframe */}
+                  <div className="hidden lg:block w-full h-full">
+                    <iframe 
+                      src={`${selectedItem.link}#view=FitH`} 
+                      title="PDF" 
+                      className="w-full h-full rounded-xl border-none bg-white" 
+                    />
+                  </div>
+                  {/* MOBILE VIEW: Show a Placeholder Card instead of a broken iframe */}
+                  <div className="lg:hidden flex flex-col items-center justify-center py-10 bg-white rounded-2xl border border-[#E0D8CC] text-center px-4">
+                    <div className="w-16 h-16 bg-[#F5F1EB] rounded-full flex items-center justify-center mb-4">
+                       <span className="text-2xl">📄</span>
+                    </div>
+                    <p className="text-[#555555] font-medium mb-2">PDF Document Ready</p>
+                    <p className="text-[#999999] text-xs">Mobile browsers work best when opening PDFs in a new window.</p>
+                  </div>
+                </>
               ) : showGallery ? (
                 <div className="h-full bg-white p-2 rounded-xl">
                   <Swiper navigation pagination={{ type: "fraction" }} modules={[Navigation, Pagination]} className="h-full">
@@ -155,20 +168,19 @@ const Projects = () => {
               )}
             </div>
 
-            {/* ACTION BUTTONS AT BOTTOM */}
+            {/* ACTION BUTTONS */}
             <div className="flex flex-col md:flex-row justify-end items-center gap-4 mt-6">
               {showPDF && (
                 <a 
                   href={selectedItem.link} 
                   target="_blank" 
                   rel="noreferrer" 
-                  className="w-full md:w-auto text-center bg-[#C6A87D] text-white px-6 py-2.5 rounded-xl font-bold text-[12px] uppercase tracking-wider hover:bg-[#b3966a] transition-all shadow-sm"
+                  className="w-full md:w-auto text-center bg-[#C6A87D] text-white px-8 py-3 rounded-xl font-bold text-[12px] uppercase tracking-wider hover:bg-[#b3966a] transition-all shadow-md active:scale-95"
                 >
-                  Download / Open Full PDF ↗
+                  View / Download Full PDF ↗
                 </a>
               )}
               
-              {/* Show close button for Projects (description only) or as a secondary option */}
               {!showPDF && !showGallery && (
                 <button onClick={closeModal} className="w-full md:w-auto bg-[#C6A87D] text-white px-10 py-2.5 rounded-xl font-medium hover:bg-[#b3966a] transition-all">
                   Close
