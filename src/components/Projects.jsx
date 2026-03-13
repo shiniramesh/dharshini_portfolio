@@ -34,9 +34,7 @@ const Projects = () => {
   };
 
   return (
-    /* 1. min-h-screen instead of h-screen ensures scrolling works on small devices */
     <section id="projects" className="min-h-screen bg-[#F5F1EB] flex flex-col items-center py-12 relative overflow-x-hidden">
-      
       <div className="md:container px-5 w-full flex flex-col max-w-6xl mx-auto">
         
         {/* TITLES */}
@@ -51,18 +49,12 @@ const Projects = () => {
 
         {/* CONTENT AREA */}
         <div className="flex flex-col lg:flex-row items-center lg:items-start justify-center gap-6 xl:gap-12">
-          
-          {/* LEFT DECORATION (Hidden on mobile) */}
           <div className="hidden lg:flex flex-none w-52 xl:w-72" data-aos="fade-right" data-aos-delay="200">
             <img src={Projects.image} alt="Decoration" className="w-full h-auto object-contain" />
           </div>
 
-          {/* CARDS WRAPPER */}
           <div className="w-full flex-1 flex flex-col items-center gap-4">
-            
-            {/* TOP ROW: Stacks on mobile (flex-col), side-by-side on laptop (md:flex-row) */}
             <div className="flex flex-col md:flex-row justify-center gap-6 w-full mb-2 items-center md:items-start">
-              
               {/* Projects Swiper */}
               <div className="w-full max-w-[320px]" data-aos="fade-up" data-aos-delay="300">
                 <p className="text-[10px] font-bold opacity-40 uppercase mb-2 tracking-[0.2em] text-center">Projects</p>
@@ -104,7 +96,6 @@ const Projects = () => {
               </div>
             </div>
 
-            {/* BOTTOM ROW: Lab Work (Always Centered) */}
             {LabWork && (
               <div className="w-full max-w-[320px]" data-aos="fade-up" data-aos-delay="500">
                 <p className="text-[10px] font-bold opacity-40 uppercase mb-2 tracking-[0.2em] text-center">Lab Work</p>
@@ -117,10 +108,7 @@ const Projects = () => {
                           <img src={thumb} alt={item.title} className="rounded-2xl h-32 w-full object-cover bg-[#F5F1EB]" />
                           <div className="mt-4 flex flex-col flex-1">
                             <h5 className="font-bold text-[15px] text-[#333333] leading-tight">{item.title}</h5>
-                            <button 
-                              className="text-[10px] font-bold text-[#C6A87D] mt-auto self-end uppercase hover:underline" 
-                              onClick={() => { setSelectedItem(item); setShowPDF(false); setShowGallery(true); }}
-                            >
+                            <button className="text-[10px] font-bold text-[#C6A87D] mt-auto self-end uppercase hover:underline" onClick={() => { setSelectedItem(item); setShowPDF(false); setShowGallery(true); }}>
                               View Gallery →
                             </button>
                           </div>
@@ -135,18 +123,57 @@ const Projects = () => {
         </div>
       </div>
 
-      {/* MODAL POPUP (Responsive sizing) */}
+      {/* MODAL POPUP */}
       {selectedItem && (
         <div className={`fixed inset-0 bg-black/50 backdrop-blur-sm flex justify-center items-center z-[100] transition-opacity p-4 ${closing ? "opacity-0" : "opacity-100"}`}>
           <div ref={modalRef} className={`bg-[#F5F1EB] p-6 md:p-8 rounded-[2rem] flex flex-col shadow-2xl transform transition-transform ${closing ? "scale-95" : "scale-100"} ${showPDF || showGallery ? "w-full lg:w-[90%] h-[85vh]" : "max-w-md w-full"}`}>
+            
             <div className="flex justify-between items-start mb-4">
               <h3 className="text-xl md:text-2xl font-bold text-[#333333] leading-tight pr-4">{selectedItem.title}</h3>
               <button onClick={closeModal} className="text-2xl opacity-40 hover:opacity-100 p-2">✕</button>
             </div>
+
             <div className="flex-1 overflow-y-auto">
-              {showPDF ? <iframe src={selectedItem.link} title="PDF" className="w-full h-full rounded-xl border-none bg-white" /> : 
-               showGallery ? <div className="h-full bg-white p-2 rounded-xl"><Swiper navigation pagination={{ type: "fraction" }} modules={[Navigation, Pagination]} className="h-full">{(selectedItem.media || selectedItem.images || []).map((med, index) => <SwiperSlide key={index} className="flex justify-center items-center"><img src={med.src || med} className="max-w-full max-h-full object-contain rounded-lg"/></SwiperSlide>)}</Swiper></div> :
-               <div className="text-[15px] text-[#555555] leading-relaxed">{selectedItem.description}</div>}
+              {showPDF ? (
+                <iframe 
+                  src={`${selectedItem.link}#view=FitH`} 
+                  title="PDF" 
+                  className="w-full h-full rounded-xl border-none bg-white" 
+                />
+              ) : showGallery ? (
+                <div className="h-full bg-white p-2 rounded-xl">
+                  <Swiper navigation pagination={{ type: "fraction" }} modules={[Navigation, Pagination]} className="h-full">
+                    {(selectedItem.media || selectedItem.images || []).map((med, index) => (
+                      <SwiperSlide key={index} className="flex justify-center items-center h-full">
+                        <img src={med.src || med} className="max-w-full max-h-full object-contain rounded-lg" alt="Gallery"/>
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
+                </div>
+              ) : (
+                <div className="text-[15px] text-[#555555] leading-relaxed">{selectedItem.description}</div>
+              )}
+            </div>
+
+            {/* ACTION BUTTONS AT BOTTOM */}
+            <div className="flex flex-col md:flex-row justify-end items-center gap-4 mt-6">
+              {showPDF && (
+                <a 
+                  href={selectedItem.link} 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  className="w-full md:w-auto text-center bg-[#C6A87D] text-white px-6 py-2.5 rounded-xl font-bold text-[12px] uppercase tracking-wider hover:bg-[#b3966a] transition-all shadow-sm"
+                >
+                  Download / Open Full PDF ↗
+                </a>
+              )}
+              
+              {/* Show close button for Projects (description only) or as a secondary option */}
+              {!showPDF && !showGallery && (
+                <button onClick={closeModal} className="w-full md:w-auto bg-[#C6A87D] text-white px-10 py-2.5 rounded-xl font-medium hover:bg-[#b3966a] transition-all">
+                  Close
+                </button>
+              )}
             </div>
           </div>
         </div>
