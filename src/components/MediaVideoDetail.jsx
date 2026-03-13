@@ -76,11 +76,11 @@ const MediaVideoDetail = () => {
                 </li>
                 <li className="flex gap-4">
                   <span className="text-[#C6A87D] font-bold">02.</span>
-                  <span><strong>Odds (1, 3, 5):</strong> Triggers a "City" instrument like Saxophone, Synthesizer, or Electric Guitar.</span>
+                  <span><strong>Odds (1, 3, 5):</strong> Triggers a "City" instrument like Saxophone, Synthesizer, Drums, or Electric Guitar.</span>
                 </li>
                 <li className="flex gap-4">
                   <span className="text-[#C6A87D] font-bold">03.</span>
-                  <span><strong>Evens (2, 4, 6):</strong> Triggers "Countryside" sounds such as Flute, Violin, or Fiddle.</span>
+                  <span><strong>Evens (2, 4, 6):</strong> Triggers "Countryside" sounds such as Flute, Violin, Acoustic Guitar, or Fiddle.</span>
                 </li>
                 <li className="flex gap-4">
                   <span className="text-[#C6A87D] font-bold">04.</span>
