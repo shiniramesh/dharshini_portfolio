@@ -10,7 +10,8 @@ import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Blog from "./components/Blog";
 import BlogDetail from "./components/BlogDetail";
-import VideoDetail from "./components/VideoDetail";
+import VideoDetail from "./components/VideoDetail"; // This is your Coffee Video
+import MediaVideoDetail from "./components/MediaVideoDetail"; // NEW: Import your second video file
 import About from "./components/About";
 import Contact from "./components/Contact";
 import { content } from "./Content";
@@ -23,7 +24,6 @@ const AppContent = ({ showPopup, setShowPopup }) => {
     Aos.init({ duration: 1800, offset: 100, disable: "mobile" });
 
     if (location.state?.scrollToBlog && blogRef.current) {
-      // scroll instantly to blog section when coming back from BlogDetail
       blogRef.current.scrollIntoView({ behavior: "auto" });
     }
   }, [location]);
@@ -49,14 +49,20 @@ const App = () => {
     <Router>
       <Navbar />
       <Routes>
-        {/* Homepage with all sections */}
+        {/* Homepage */}
         <Route path="/" element={<AppContent showPopup={showPopup} setShowPopup={setShowPopup} />} />
 
         {/* Blog detail page */}
         <Route path="/blog/:id" element={<BlogDetail />} />
 
-        {/* Video detail page */}
+        {/* --- VIDEO ROUTES --- */}
+        
+        {/* 1. Route for the Media Assignment (Specific Path) */}
+        <Route path="/video/media-assignment" element={<MediaVideoDetail />} />
+
+        {/* 2. Route for the Coffee Video (Dynamic Path) */}
         <Route path="/video/:id" element={<VideoDetail />} />
+        
       </Routes>
 
       <footer className="p-3 text-center bg-[#F5F1EB] border-t border-[#E0D8CC]">

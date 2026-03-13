@@ -19,6 +19,7 @@ import blogImg1 from "./assets/images/Blog/Image1.JPG";
 import blogImg2 from "./assets/images/Blog/Image2.jpeg";
 import blogImg3 from "./assets/images/Blog/Image3.JPG";
 import VdoThumb from "./assets/images/VideoThumb/coffee.png";
+import MediaThumb from "./assets/images/VideoThumb/media.png";
 
 // Ensure these paths match your folder structure exactly!
 import labwork1 from "./assets/images/Projects/stand1.jpeg"; 
@@ -187,6 +188,12 @@ export const content = {
         type: "video",
         image: VdoThumb, // you can change this later to video thumbnail
       },
+      {
+        id: "media-assignment", // This must match the path in App.js
+        type: "video",
+        title: "Media Project",
+        image: MediaThumb,
+      }
     ],
   },
   
@@ -222,12 +229,7 @@ export const content = {
       { title: " Interactive Art Storyboarding - “Is Recycling Enough?", 
         image: project4, 
         link: "/report.pdf", 
-      }, 
-      {
-        title: " Interactive/Algorithmic Soundscape Performance", 
-        image: project5, 
-        link: "/soundscape.pdf",
-      }// Add more reports here if needed 
+      }
     ], 
   }, 
   LabWork: {
@@ -236,7 +238,7 @@ export const content = {
       {
         title: "Phone Stand Redesign",
         // Notice this is an ARRAY of images (plural "images")
-        images: [labwork1, labwork2], 
+        media: [labwork1,labwork2],
       }
     ],
   },
