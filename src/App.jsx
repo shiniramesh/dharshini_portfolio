@@ -10,8 +10,9 @@ import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Blog from "./components/Blog";
 import BlogDetail from "./components/BlogDetail";
-import VideoDetail from "./components/VideoDetail"; // This is your Coffee Video
-import MediaVideoDetail from "./components/MediaVideoDetail"; // NEW: Import your second video file
+import VideoDetail from "./components/VideoDetail"; // Your Coffee Video
+import MediaVideoDetail from "./components/MediaVideoDetail"; 
+import PodcastVideoDetail from "./components/PodcastVideoDetail"; // ✅ NEW: Import Podcast file
 import About from "./components/About";
 import Contact from "./components/Contact";
 import { content } from "./Content";
@@ -24,7 +25,10 @@ const AppContent = ({ showPopup, setShowPopup }) => {
     Aos.init({ duration: 1800, offset: 100, disable: "mobile" });
 
     if (location.state?.scrollToBlog && blogRef.current) {
-      blogRef.current.scrollIntoView({ behavior: "auto" });
+      // Small timeout ensures the DOM is ready before scrolling
+      setTimeout(() => {
+        blogRef.current.scrollIntoView({ behavior: "smooth" });
+      }, 100);
     }
   }, [location]);
 
@@ -57,10 +61,13 @@ const App = () => {
 
         {/* --- VIDEO ROUTES --- */}
         
-        {/* 1. Route for the Media Assignment (Specific Path) */}
+        {/* 1. Media Assignment */}
         <Route path="/video/media-assignment" element={<MediaVideoDetail />} />
 
-        {/* 2. Route for the Coffee Video (Dynamic Path) */}
+        {/* 2. Podcast Video ✅ NEW ROUTE */}
+        <Route path="/video/podcast-video" element={<PodcastVideoDetail />} />
+
+        {/* 3. Coffee Video (Dynamic fallback) */}
         <Route path="/video/:id" element={<VideoDetail />} />
         
       </Routes>

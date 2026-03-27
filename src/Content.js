@@ -20,6 +20,7 @@ import blogImg2 from "./assets/images/Blog/Image2.jpeg";
 import blogImg3 from "./assets/images/Blog/Image3.JPG";
 import VdoThumb from "./assets/images/VideoThumb/coffee.png";
 import MediaThumb from "./assets/images/VideoThumb/media.png";
+import PodcastThumb from "./assets/images/VideoThumb/podcast.png";
 
 // Ensure these paths match your folder structure exactly!
 import labwork1 from "./assets/images/Projects/stand1.jpeg"; 
@@ -184,16 +185,28 @@ export const content = {
           "I took this photo because the store has both instruments to create music and vinyl records to experience it. The guitars are surrounded by lights, as if they bring light and inspiration into life, while the vinyl records include music from different countries, showing that no matter what language someone speaks or where they come from, music can still be felt and understood. It reflects my passion for music—not just in creating it, but in enjoying it. The instruments, records, and the store’s atmosphere make me feel connected to the joy, creativity, and endless possibilities that music brings into my life."
       },
       {
-        id: "video-ad",
+        id: "video-slider-group", // This is just a container ID for the Swiper
         type: "video",
-        image: VdoThumb, // you can change this later to video thumbnail
+        // The 'slides' array holds the videos that will swipe in the first card
+        slides: [
+          {
+            id: "podcast-video", // Clicking this routes to /video/podcast-video
+            title: "Podcast Video",
+            image: PodcastThumb, // Use your newly imported podcast thumbnail here
+          },
+          {
+            id: "video-ad", // Clicking this routes to /video/video-ad
+            title: "Video Ad",
+            image: VdoThumb, 
+          }
+        ]
       },
       {
-        id: "media-assignment", // This must match the path in App.js
+        id: "media-assignment", // Clicking this routes to /video/media-assignment
         type: "video",
         title: "Media Project",
         image: MediaThumb,
-      }
+      },
     ],
   },
   

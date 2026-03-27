@@ -85,3 +85,46 @@
   background-color: #B79362;
   opacity: 1;
 }
+/* --- Floating 3D Pagination for Blog Slider --- */
+
+/* 1. Ensure the Swiper container doesn't cut off shadows */
+.custom-blog-swiper {
+  position: relative !important;
+  padding-bottom: 0 !important; /* Removes the white space below */
+}
+
+/* 2. Position dots ON TOP of the image */
+.custom-blog-swiper .swiper-pagination {
+  bottom: 20px !important; /* Distance from bottom of image */
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+
+/* 3. The 3D Glass-morphism Dots */
+.custom-blog-swiper .swiper-pagination-bullet {
+  width: 8px !important;
+  height: 8px !important;
+  background-color: rgba(255, 255, 255, 0.8) !important; /* Semi-transparent white */
+  opacity: 1 !important;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* The 3D shadow effect */
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+/* 4. The Active "Pill" Dot (Theme Beige) */
+.custom-blog-swiper .swiper-pagination-bullet-active {
+  background-color: #C6A87D !important; /* Your theme beige */
+  width: 24px !important; /* Elongated pill shape */
+  border-radius: 12px !important;
+  box-shadow: 0 4px 10px rgba(198, 168, 125, 0.5); /* Glow effect */
+}
+
+/* 5. Optional: Hide dots on very small mobile if they overlap too much */
+@media (max-width: 480px) {
+  .custom-blog-swiper .swiper-pagination {
+    bottom: 10px !important;
+  }
+}
